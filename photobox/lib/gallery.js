@@ -1,38 +1,49 @@
-import loader from "./photoloader.js";
+import photoloader from './photoloader.js';
+import lightbox from './lightbox.js';
 
-let id;
+let config;
 
-let init = function (idp) {
-    id = idp;
+function init(conf){
+    photoloader.init(conf.url);
+    config=conf
+    $("#lightbox_close").click(function(){
+        $(".lightboc_container").toggle('slow');
+    })
 }
-let chargement = function () {
-    loader.init("https://webetu.iutnc.univ-lorraine.fr");
-    let l = loader.chargement("/www/canals5/photobox/photos/?offset=23&size=12");
-    l.then(traite);
+
+function charge(link){
+    let pr;
+    if(typeof link !== 'string'){
+        pr = photoloader.chargement("/www/canals5/photobox/photos/?offset="+config.id+"&size="+config.page);
+    }
+    else{
+        pr = photoloader.chargement(link);
+    }
+    pr.then(trait);
 }
 
-let traite = function (e) {
-    let save = $("#photobox-gallery");
-    save.empty();
-    console.log(save);
+function trait(e){
     let photos = e.data.photos;
-
-    //console.log(photo[0].photo.original.href);
-    photos.forEach(function (photo) {
-        console.log(photo);
-        let link = $("<div class=\"vignette\" ><img" +
-            "                  data-img=\"https://webetu.iutnc.univ-lorraine.fr" + photo.photo.original.href + "\""+
-            "                  data-uri=\"https://webetu.iutnc.univ-lorraine.fr" + photo.links.self.href + "\""+
-            "                  src=\"https://webetu.iutnc.univ-lorraine.fr" + photo.photo.thumbnail.href + "\""+ ">" +
-            "                  <div>"+photo.photo.titre+"</div>" +
-            "              </div>");
-        save.append(link);
+    let gal = $('#photobox-gallery');
+    gal.empty();
+    photos.forEach(function(photo){
+        let vignette = $('<div class="vignette"> <img src="'+config.url+photo.photo.thumbnail.href+'" data-uri="'+config.url+photo.links.self.href+'"><div>'+photo.photo.titre+"</div></div>");
+        vignette.click(function(){
+            lightbox.init(vignette);
+        });
+        gal.append(vignette);
     });
-
+    $(document).ready(function(){
+        $('#next').unbind('click').click(function(){
+            charge(e.data.links.next.href);
+        });
+        $('#previous').unbind('click').click(function(){
+            charge(e.data.links.prev.href);
+        });
+    });
 }
-
 
 export default {
     init: init,
-    chargement: chargement
+    chargement: charge,
 };

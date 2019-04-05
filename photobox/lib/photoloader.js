@@ -1,22 +1,35 @@
 let api_url;
 
-
-let init = function(url){
+let init = function (url){
     api_url = url;
 }
 
-let chargement = function(ressource){
-    console.log(api_url + ressource);
+function charg(ressource){
     return axios.get(
         api_url + ressource,
         {
             responseType: 'json',
             withCredentials: true
         }
-    ).catch(function (e){alert('echec reseau')});
+    ).catch(function(e){alert('error')});
 }
 
+function chargByUrl(url){
+    return axios.get(
+        url,
+        {
+            responseType: 'json',
+            withCredentials: true
+        }
+    ).catch(function(e){alert('error')});
+}
+
+function getApi(){
+    return api_url;
+}
 export default {
-    init: init,
-    chargement: chargement
+    init : init,
+    chargement: charg,
+    chargByUrl: chargByUrl,
+    getApi: getApi,
 };

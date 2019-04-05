@@ -20,7 +20,10 @@ time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
-  vertical-align: baseline; }
+  font-family: sans-serif;
+  vertical-align: baseline;
+}
+
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -61,15 +64,219 @@ nav #next {
 }
 
 .gallery-container {
+  padding: 3em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 #lightbox_container {
-    display : none;
+  display : none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: black;
+  text-align: center;
+  overflow-y: scroll;
 }
 
-.gallery-container{
-  padding: 3em;
-  //display: flex;
-  flex-direction: row;
-
+#lightbox{
+  color:white;
+  font-size: 4vw;
 }
+
+#lightbox-head{
+  overflow: hidden;
+  height: auto;
+}
+#lightbox_close{
+  margin: 1%;
+  display: inline;
+  color: white;
+  position: relative;
+  float: left;
+  cursor: pointer;
+}
+#lightbox_title{
+  display: inline;
+  text-align: center;
+  margin-bottom: 1%;
+  font-size: 3vw;
+  color:white;
+}
+
+#lightbox_full_img{
+  width: 78%;
+  height: auto;
+}
+
+#lightbox-img{
+  display: inline;
+}
+#lightbox_next{
+  float: right;
+  cursor: pointer;
+}
+#lightbox_prev{
+  float: left;
+  cursor: pointer;
+}
+
+#lightbox-info{
+  margin: 1rem;
+  background-color: #e9ecef;
+  border-radius: 0.3rem;
+  color: black;
+  font-size: 2vw;
+}
+
+ul.bar{
+  /*display: flex;*/
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /*border: 1px solid #e7e7e7;*/
+  background-color: #f3f3f3;
+}
+
+.bar > li{
+  display: list-item;
+  color: #666;
+  text-align: center;
+  text-decoration: none;
+  float: left;
+  padding: 10px;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+.bar > li:not(.select):hover{
+  background-color: #888;
+  color:white;
+}
+
+li.select{
+  background-color: #008CBA;
+  color: white;
+}
+
+ul.Commentaires{
+  position: relative;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.ajout {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+/*#blackout
+  // Ces 6 lignes nous assurent un affichage en plein-ecran, au dessus du reste
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  z-index: 10
+
+  // Si vous avez des envies de transparences, faites le avec la couleur
+  // du fond, et pas avec une opacity: 0.9 sur la boite.
+  // De cette facon, vos images resteront opaques.
+  background: rgba(0,0,0,0.9)
+  text-align: center
+
+  // Cette ligne nous permet de mettre un curseur en croix, pour
+  // simplifier la comprehension.
+  cursor: url('http://www.rouvre.com/themes/default/images/cursor-close.png'), crosshair
+
+  // Ceci est notre élément titre. Designez comme vous l'entendez
+  .title
+    width: 100%
+    height: 20px
+    background-color: rgba(0,0,0,0.4)
+    text-align: center
+    color: white
+    display: block
+    position: absolute
+    top: 10px
+    left: 20px
+
+  // Notre image
+  img
+    max-width: 100%
+    max-height: 100%*/
+
+.vignette{
+  cursor: pointer;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 21px;
+}
+.vignette img{
+  max-width: 100%;
+  height: auto;
+}
+
+.vignette div {
+  text-align: center;
+  padding: 10px 20px;
+}
+nav {
+background-color: #00C0FF;
+  height: 84px;
+  padding: 1em;
+  font-size: 22px;
+}
+nav button{
+  background-color: #f1f1f1;
+  color: black;
+  font-size: 16px;
+  padding: 12px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  text-align: center;
+}
+nav button:hover{
+  background-color: black;
+  color: white;
+}
+nav div{
+  float: right;
+  font-size: smaller;
+  color: #f1f1f1;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 1px 1px 10px #141414;
+}
+
+
+
+
