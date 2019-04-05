@@ -1,37 +1,38 @@
-import photoloader from './photoloader.js';
+import loader from './photoloader.js';
 import lightbox from './lightbox.js';
 
-let config;
+let configuration;
 
-function init(conf){
-    photoloader.init(conf.url);
-    config=conf
+function init(configp){
+    loader.init(configp.url);
+    configuration=configp
     $("#lightbox_close").click(function(){
         $(".lightboc_container").toggle('slow');
     })
 }
 
 function charge(link){
-    let pr;
-    if(typeof link !== 'string'){
-        pr = photoloader.chargement("/www/canals5/photobox/photos/?offset="+config.id+"&size="+config.page);
+    let prl;
+    if(typeof link == 'string'){
+        prl = loader.chargement(link);
     }
     else{
-        pr = photoloader.chargement(link);
+        prl = loader.chargement("/www/canals5/photobox/photos/?offset="+configuration.id+"&size="+configuration.page);
     }
-    pr.then(trait);
+    prl.then(trait);
 }
 
 function trait(e){
+    let save = $('#photobox-gallery');
     let photos = e.data.photos;
-    let gal = $('#photobox-gallery');
-    gal.empty();
+
+    save.empty();
     photos.forEach(function(photo){
-        let vignette = $('<div class="vignette"> <img src="'+config.url+photo.photo.thumbnail.href+'" data-uri="'+config.url+photo.links.self.href+'"><div>'+photo.photo.titre+"</div></div>");
-        vignette.click(function(){
-            lightbox.init(vignette);
+        let link = $('<div class="vignette"> <img src="'+configuration.url+photo.photo.thumbnail.href+'" data-uri="'+configuration.url+photo.links.self.href+'"><div>'+photo.photo.titre+"</div></div>");
+        link.click(function(){
+            lightbox.init(link);
         });
-        gal.append(vignette);
+        save.append(link);
     });
     $(document).ready(function(){
         $('#next').unbind('click').click(function(){

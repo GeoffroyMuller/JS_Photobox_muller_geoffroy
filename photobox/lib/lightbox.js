@@ -1,8 +1,8 @@
-import photoloader from './photoloader.js';
+import loader from './photoloader.js';
 
-function traitement(vignette){
-    let pr = photoloader.chargByUrl(vignette.children[0].dataset['uri']);
-    pr.then(info);
+function trait(vignette){
+    let prl = loader.chargByUrl(vignette.children[0].dataset['uri']);
+    prl.then(info);
     $("#lightbox_title").text($(vignette.children[1]).html());
     $("#lightbox_full_img")[0].src=vignette.children[0].src;
     next(vignette);
@@ -10,7 +10,7 @@ function traitement(vignette){
 }
 function init(v){
     let vignette = v[0];
-    traitement(vignette)
+    trait(vignette)
     $(".lightboc_container").toggle('slow');
     $("li").click(function(e){
         $(e.target).addClass("select");
@@ -22,8 +22,8 @@ function init(v){
 
 function info(e){
     $("#lightbox-info .descr").text(e.data.photo.descr);
-    $("form")[0].action=photoloader.getApi()+e.data.links.comments.href;
-    let pr = photoloader.chargement(e.data.links.comments.href);
+    $("form")[0].action=loader.getApi()+e.data.links.comments.href;
+    let pr = loader.chargement(e.data.links.comments.href);
     pr.then(commentaire);
 }
 
@@ -38,7 +38,7 @@ function commentaire(e){
 function next(vignette){
     $("#lightbox_next").unbind('click').click(function(){
         try {
-            traitement($(vignette).next()[0]);
+            trait($(vignette).next()[0]);
         } catch (e) {
 
         }
@@ -48,7 +48,7 @@ function next(vignette){
 function prev(vignette){
     $("#lightbox_prev").unbind('click').click(function(){
         try {
-            traitement($(vignette).prev()[0]);
+            trait($(vignette).prev()[0]);
         } catch (e) {
 
         }

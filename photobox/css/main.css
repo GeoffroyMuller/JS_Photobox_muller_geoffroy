@@ -79,7 +79,7 @@ nav #next {
   width: 100%;
   height: 100%;
   z-index: 10;
-  background: black;
+  background: #000000e6;
   text-align: center;
   overflow-y: scroll;
 }
@@ -131,7 +131,9 @@ nav #next {
   background-color: #e9ecef;
   border-radius: 0.3rem;
   color: black;
-  font-size: 2vw;
+  font-size: 17px;
+  margin-bottom: 150px;
+
 }
 
 ul.bar{
@@ -142,6 +144,8 @@ ul.bar{
   overflow: hidden;
   /*border: 1px solid #e7e7e7;*/
   background-color: #f3f3f3;
+  border: 1px solid #ccc;
+
 }
 
 .bar > li{
@@ -151,7 +155,6 @@ ul.bar{
   text-decoration: none;
   float: left;
   padding: 10px;
-  border: 1px solid;
   cursor: pointer;
 }
 
@@ -161,7 +164,7 @@ ul.bar{
 }
 
 li.select{
-  background-color: #008CBA;
+  background-color: #339bff;
   color: white;
 }
 
@@ -172,7 +175,7 @@ ul.Commentaires{
 input[type=text], select {
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 8px 11px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -181,7 +184,7 @@ input[type=text], select {
 
 input[type=submit] {
   width: 100%;
-  background-color: #4CAF50;
+  background-color: #339bff;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -191,7 +194,8 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-  background-color: #45a049;
+  background-color: black;
+  color: white;
 }
 
 .ajout {
@@ -276,7 +280,10 @@ nav div{
   color: #f1f1f1;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 1px 1px 10px #141414;
 }
-
+#story{
+  width: 95%;
+  height: 150px;
+}
 
 
 
